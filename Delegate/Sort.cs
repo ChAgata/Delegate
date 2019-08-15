@@ -10,7 +10,7 @@ namespace Delegate
     {
         public int[] table;
 
-        private void BubbleSort(int[] table)
+        private void BubbleSort(Log logs)
         {
             int n = table.Length;
             do
@@ -58,7 +58,7 @@ namespace Delegate
         internal void Test()
         {
             InsertSort(new Log(Logs));
-
+            BubbleSort(new Log(Logs));
         }
     }
     delegate int[] Log(int[] table);
