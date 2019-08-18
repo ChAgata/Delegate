@@ -10,8 +10,9 @@ namespace Delegate
     {
         public int[] table;
 
-        private void BubbleSort(Log logs)
+        public void BubbleSort(int[] table, LogDelegate logs)
         {
+            logs.Invoke("start");
             int n = table.Length;
             do
             {
@@ -27,10 +28,12 @@ namespace Delegate
                 n--;
             }
             while (n > 1);
+            logs.Invoke("koniec");
         }
 
-        private void InsertSort(Log logs)
+        public void InsertSort(int[] table, LogDelegate logs)
         {
+            logs.Invoke("start");
             int k, j;
             int n = table.Length;
             for (int i = 1; i < n; i++)
@@ -45,21 +48,11 @@ namespace Delegate
                 table[j + 1] = k;
                 var x = logs;
             }
+            logs.Invoke("koniec");
         }
         
 
-        public void Logs(int[] table)
-        {
-            foreach(int item in table)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        internal void Test()
-        {
-            InsertSort(new Log(Logs));
-            BubbleSort(new Log(Logs));
-        }
+        
     }
-    delegate int[] Log(int[] table);
+    public delegate void LogDelegate(string text);
 }
