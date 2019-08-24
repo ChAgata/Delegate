@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delegate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Delegate
 
         public void BubbleSort(int[] table, LogDelegate logs)
         {
+            SortStarting?.Invoke(this, new SortEventArgs() { Message = "Startujemy z sortowaniem" });
             logs.Invoke("start");
             int n = table.Length;
             do
@@ -50,6 +52,7 @@ namespace Delegate
             }
             logs.Invoke("koniec");
         }
+        public event EventHandler<SortEventArgs> SortStarting;
         
 
         
